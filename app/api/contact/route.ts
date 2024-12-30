@@ -2,10 +2,21 @@ import { NextResponse } from 'next/server'
 import { MongoClient } from 'mongodb'
 import nodemailer from 'nodemailer'
 
+if (!process.env.MONGODB_URI) throw new Error('MONGODB_URI is not defined')
+if (!process.env.EMAIL_APP_PASSWORD) throw new Error('EMAIL_APP_PASSWORD is not defined')
+if (!process.env.EMAIL_FROM) throw new Error('EMAIL_FROM is not defined')
+if (!process.env.EMAIL_TO) throw new Error('EMAIL_TO is not defined')
+
 const uri = process.env.MONGODB_URI
 const emailPassword = process.env.EMAIL_APP_PASSWORD
 const emailFrom = process.env.EMAIL_FROM
 const emailTo = process.env.EMAIL_TO
+
+interface ContactFormData {
+  name: string
+  email: string
+  message: string
+}
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -17,8 +28,8 @@ const transporter = nodemailer.createTransport({
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json()
-    const client = await MongoClient.connect(uri as string)
+    const body = await request.json() as ContactFormData
+    const client = await MongoClient.connect(uri)
     const db = client.db('dev_geoffvrijmoet_com')
     
     // Store in MongoDB
@@ -49,8 +60,9 @@ Message: ${body.message}
 
     return NextResponse.json({ message: 'Message sent successfully' })
   } catch (error) {
+    console.error('Contact form error:', error)
     return NextResponse.json(
-      { error: 'Failed to send message: ' + error },
+      { error: `Failed to send message: ${error}` },
       { status: 500 }
     )
   }
