@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
 
 export default function Hero() {
   return (
@@ -19,9 +18,6 @@ export default function Hero() {
           <p className="text-xl md:text-2xl text-muted-foreground mb-8">
             Specialized in building powerful dashboards and automated business solutions
           </p>
-          <Button size="lg" className="text-lg">
-            See My Work
-          </Button>
         </motion.div>
       </div>
     </section>
