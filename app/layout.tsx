@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
+import { Alexandria } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const parkinsans = localFont({
+  src: './fonts/Parkinsans-VariableFont_wght.ttf',
+  variable: '--font-parkinsans',
+  display: 'swap',
+  weight: '100 900'
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const alexandria = Alexandria({
+  subsets: ['latin'],
+  variable: '--font-alexandria',
+  weight: ['700'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -25,9 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${alexandria.variable} ${parkinsans.variable} font-sans`}>
         {children}
       </body>
     </html>

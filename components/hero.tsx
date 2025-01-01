@@ -13,7 +13,7 @@ export default function Hero() {
           transition={{ duration: 0.5 }}
           className="max-w-3xl mx-auto text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+          <h1 className="text-4xl md:text-6xl font-heading font-bold tracking-tight mb-6">
             Custom Web Solutions for Your Business
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-8">

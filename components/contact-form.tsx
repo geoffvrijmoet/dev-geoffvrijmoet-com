@@ -47,7 +47,7 @@ export default function ContactForm() {
     <section className="py-16 md:py-24 bg-secondary/20">
       <div className="container px-4">
         <div className="max-w-xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Let&apos;s Work Together</h2>
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12">Let&apos;s Work Together</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <Input name="name" placeholder="Your Name" required />
