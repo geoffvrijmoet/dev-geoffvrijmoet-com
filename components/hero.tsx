@@ -13,10 +13,10 @@ export default function Hero() {
           className="max-w-3xl mx-auto text-center"
         >
           <h1 className="text-4xl md:text-6xl font-heading font-bold tracking-tight mb-6">
-            Custom Web Solutions for Your Business
+            I make custom web apps for businesses
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-8">
-            Specialized in building powerful dashboards and automated business solutions
+            Fully operational solutions tailored to your needs
           </p>
         </motion.div>
       </div>
