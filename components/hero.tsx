@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 export default function Hero() {
   return (
     <section className="py-16 md:py-20 flex items-center justify-center bg-gradient-to-b from-background to-secondary/20">
-      <div className="container px-4">
+      <div className="container px-4 pt-12 md:pt-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
