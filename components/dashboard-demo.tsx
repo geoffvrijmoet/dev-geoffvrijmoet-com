@@ -51,13 +51,15 @@ export default function DashboardDemo() {
   const [selectedTab, setSelectedTab] = useState("overview")
   
   return (
-    <section className="py-8 md:py-12 flex justify-center items-center">
+    <section className="py-4 md:py-8 flex justify-center items-center">
       <div className="container px-4 max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            duration: 0.5,
+            delay: 0.25
+          }}
         >
           <div className="bg-white rounded-xl shadow-lg p-6 border border-zinc-200">
             {/* Dashboard Header */}

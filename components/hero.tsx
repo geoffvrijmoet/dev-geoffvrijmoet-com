@@ -4,8 +4,8 @@ import { motion } from "framer-motion"
 
 export default function Hero() {
   return (
-    <section className="min-h-[90vh] flex items-center justify-center bg-gradient-to-b from-background to-secondary/20">
-      <div className="container px-4 py-16 md:py-24">
+    <section className="py-16 md:py-20 flex items-center justify-center bg-gradient-to-b from-background to-secondary/20">
+      <div className="container px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
