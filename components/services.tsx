@@ -1,21 +1,21 @@
-import { Code2, BarChart3, Workflow } from "lucide-react"
+import { MessageSquare, Cloud, Workflow } from "lucide-react"
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 
 const services = [
   {
-    title: "Custom Dashboards",
-    description: "Powerful interfaces to manage your business data and operations",
-    icon: BarChart3
+    title: "1-on-1 support",
+    description: "We come up with your perfect solution together",
+    icon: MessageSquare
   },
   {
-    title: "Integration Solutions",
-    description: "Seamless connections with Square, Shopify, Stripe, and more",
+    title: "Integrations available",
+    description: "I seamlessly connect your Stripe, Shopify, Square, Google Drive and other accounts so you can focus on operations",
     icon: Workflow
   },
   {
-    title: "Custom Development",
-    description: "Tailored web applications built for your specific needs",
-    icon: Code2
+    title: "Fully hosted",
+    description: "I handle everything to keep your site live 24/7",
+    icon: Cloud
   }
 ]
 
@@ -23,7 +23,7 @@ export default function Services() {
   return (
     <section className="py-16 md:py-24 bg-secondary/20">
       <div className="container px-4 max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12">Services</h2>
+        <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12">How it works</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <Card key={index} className="bg-background">
