@@ -1,5 +1,6 @@
 import { MessageSquare, Cloud, Workflow } from "lucide-react"
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import IntegrationLogos from "./integration-logos"
 
 const services = [
   {
@@ -9,8 +10,9 @@ const services = [
   },
   {
     title: "Integrations available",
-    description: "I seamlessly connect your Stripe, Shopify, Square, Google Drive and other accounts so you can focus on operations",
-    icon: Workflow
+    description: "I seamlessly connect your accounts so you can focus on operations",
+    icon: Workflow,
+    extra: <IntegrationLogos />
   },
   {
     title: "Fully hosted",
@@ -33,6 +35,7 @@ export default function Services() {
                 </div>
                 <CardTitle>{service.title}</CardTitle>
                 <CardDescription>{service.description}</CardDescription>
+                {service.extra}
               </CardHeader>
             </Card>
           ))}
