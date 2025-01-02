@@ -20,6 +20,11 @@ const alexandria = Alexandria({
 export const metadata: Metadata = {
   title: "Geoff Vrijmoet | Web Developer",
   description: "Custom web solutions for businesses",
+  icons: {
+    icon: [
+      { url: "/favicon.svg" }
+    ]
+  }
 };
 
 export default function RootLayout({
