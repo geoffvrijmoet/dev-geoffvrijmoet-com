@@ -50,6 +50,40 @@ const mockOrders = [
   { id: 4, customer: "Emily Brown", amount: 199.50, status: "Completed", date: "2024-03-19" },
 ]
 
+const mockProducts = [
+  { id: 1, name: "Premium T-Shirt", price: 29.99, stock: 45, image: "/mockup-tshirt.jpg" },
+  { id: 2, name: "Designer Hoodie", price: 59.99, stock: 28, image: "/mockup-hoodie.jpg" },
+  { id: 3, name: "Classic Jeans", price: 79.99, stock: 15, image: "/mockup-jeans.jpg" },
+  { id: 4, name: "Leather Bag", price: 129.99, stock: 8, image: "/mockup-bag.jpg" },
+]
+
+const ecommerceStats = [
+  {
+    title: "Total Sales",
+    value: "$45,231",
+    change: "+15%",
+    icon: DollarSign
+  },
+  {
+    title: "Active Products",
+    value: "124",
+    change: "+3%",
+    icon: ShoppingCart
+  },
+  {
+    title: "Conversion Rate",
+    value: "3.2%",
+    change: "+0.8%",
+    icon: TrendingUp
+  },
+  {
+    title: "Customers",
+    value: "1,205",
+    change: "+12%",
+    icon: Users
+  }
+]
+
 const stats = [
   {
     title: "Total Revenue",
@@ -94,6 +128,7 @@ export default function DashboardDemo() {
         >
           {/* App Type Selector */}
           <div className="bg-zinc-100/80 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-zinc-200 mb-8">
+            <h2 className="text-2xl font-heading font-bold text-center mb-6">Tools I like to build</h2>
             <div className="grid md:grid-cols-4 gap-4">
               {appTypes.map((app) => (
                 <button
@@ -224,8 +259,110 @@ export default function DashboardDemo() {
             </div>
           )}
 
+          {/* E-commerce Platform Demo */}
+          {selectedApp === "ecommerce" && (
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-zinc-200">
+              {/* E-commerce Header */}
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="text-2xl font-heading font-bold">E-commerce Platform</h2>
+                <div className="flex items-center gap-4">
+                  <button className="p-2 hover:bg-zinc-100 rounded-md">
+                    <Clock className="w-5 h-5" />
+                  </button>
+                  <button className="p-2 hover:bg-zinc-100 rounded-md">
+                    <AlertCircle className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Stats Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                {ecommerceStats.map((stat, index) => (
+                  <Card key={index}>
+                    <CardHeader className="flex flex-row items-center justify-between pb-2">
+                      <CardTitle className="text-sm font-medium text-muted-foreground">
+                        {stat.title}
+                      </CardTitle>
+                      <stat.icon className="w-4 h-4 text-muted-foreground" />
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-2xl font-bold">{stat.value}</div>
+                      <p className="text-xs text-green-500">{stat.change} from last month</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              {/* Product Grid */}
+              <div className="mb-8">
+                <h3 className="text-lg font-medium mb-4">Featured Products</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {mockProducts.map((product) => (
+                    <div key={product.id} className="bg-white rounded-lg border border-zinc-200 overflow-hidden">
+                      <div className="aspect-square bg-zinc-100 flex items-center justify-center">
+                        <Store className="w-8 h-8 text-zinc-400" />
+                      </div>
+                      <div className="p-4">
+                        <h4 className="font-medium mb-1">{product.name}</h4>
+                        <div className="flex items-center justify-between">
+                          <span className="text-lg font-bold">${product.price}</span>
+                          <span className={`text-sm ${
+                            product.stock < 10 ? "text-red-500" : "text-green-500"
+                          }`}>
+                            {product.stock} in stock
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Recent Orders Table */}
+              <div>
+                <h3 className="text-lg font-medium mb-4">Recent Orders</h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b">
+                        <th className="text-left py-3 px-4 font-medium">Order ID</th>
+                        <th className="text-left py-3 px-4 font-medium">Customer</th>
+                        <th className="text-left py-3 px-4 font-medium">Amount</th>
+                        <th className="text-left py-3 px-4 font-medium">Status</th>
+                        <th className="text-left py-3 px-4 font-medium">Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {mockOrders.map((order) => (
+                        <tr key={order.id} className="border-b">
+                          <td className="py-3 px-4">#{order.id}</td>
+                          <td className="py-3 px-4">{order.customer}</td>
+                          <td className="py-3 px-4">${order.amount.toFixed(2)}</td>
+                          <td className="py-3 px-4">
+                            <span
+                              className={`inline-block px-2 py-1 rounded-full text-xs ${
+                                order.status === "Completed"
+                                  ? "bg-green-100 text-green-800"
+                                  : order.status === "Processing"
+                                  ? "bg-blue-100 text-blue-800"
+                                  : "bg-yellow-100 text-yellow-800"
+                              }`}
+                            >
+                              {order.status}
+                            </span>
+                          </td>
+                          <td className="py-3 px-4">{order.date}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Placeholders for other app types */}
-          {selectedApp !== "dashboard" && (
+          {selectedApp !== "dashboard" && selectedApp !== "ecommerce" && (
             <div className="bg-white rounded-xl shadow-lg p-6 border border-zinc-200">
               <div className="h-[600px] flex items-center justify-center bg-zinc-50 rounded-lg border border-dashed">
                 <div className="text-center">
