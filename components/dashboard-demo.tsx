@@ -7,8 +7,6 @@ import {
   DollarSign, 
   TrendingUp,
   ShoppingCart,
-  Clock,
-  AlertCircle,
   Store,
   Calendar,
   MessageSquare
@@ -25,8 +23,8 @@ const appTypes = [
   },
   {
     id: "ecommerce",
-    title: "E-commerce Platform",
-    description: "Online store with inventory management",
+    title: "Shopify Apps",
+    description: "Custom apps and integrations for Shopify stores",
     icon: Store
   },
   {
@@ -50,37 +48,34 @@ const mockOrders = [
   { id: 4, customer: "Emily Brown", amount: 199.50, status: "Completed", date: "2024-03-19" },
 ]
 
-const mockProducts = [
-  { id: 1, name: "Premium T-Shirt", price: 29.99, stock: 45, image: "/mockup-tshirt.jpg" },
-  { id: 2, name: "Designer Hoodie", price: 59.99, stock: 28, image: "/mockup-hoodie.jpg" },
-  { id: 3, name: "Classic Jeans", price: 79.99, stock: 15, image: "/mockup-jeans.jpg" },
-  { id: 4, name: "Leather Bag", price: 129.99, stock: 8, image: "/mockup-bag.jpg" },
-]
-
-const ecommerceStats = [
+const mockShopifyApps = [
   {
-    title: "Total Sales",
-    value: "$45,231",
-    change: "+15%",
-    icon: DollarSign
+    name: "Inventory Sync Pro",
+    description: "Real-time inventory sync across multiple sales channels",
+    benefits: ["Prevent overselling", "Automated stock updates", "Channel sync"],
+    type: "Custom App",
+    integratesWith: ["Amazon", "eBay", "Etsy"]
   },
   {
-    title: "Active Products",
-    value: "124",
-    change: "+3%",
-    icon: ShoppingCart
+    name: "Smart Analytics",
+    description: "Advanced analytics and reporting for data-driven decisions",
+    benefits: ["Customer insights", "Sales forecasting", "Performance tracking"],
+    type: "Custom App",
+    integratesWith: ["Google Analytics", "Facebook Ads", "Email platforms"]
   },
   {
-    title: "Conversion Rate",
-    value: "3.2%",
-    change: "+0.8%",
-    icon: TrendingUp
+    name: "Order Automation",
+    description: "Streamline your order fulfillment and processing",
+    benefits: ["Auto fulfillment", "Shipping rules", "Order routing"],
+    type: "Custom App",
+    integratesWith: ["3PL services", "Shipping carriers", "ERPs"]
   },
   {
-    title: "Customers",
-    value: "1,205",
-    change: "+12%",
-    icon: Users
+    name: "Customer Loyalty+",
+    description: "Boost customer retention with personalized rewards",
+    benefits: ["Points system", "VIP tiers", "Automated rewards"],
+    type: "Custom App",
+    integratesWith: ["Email marketing", "SMS platforms", "CRM systems"]
   }
 ]
 
@@ -111,6 +106,111 @@ const stats = [
   }
 ]
 
+const mockContacts = [
+  {
+    id: 1,
+    name: "Sarah Wilson",
+    company: "Tech Solutions Inc",
+    email: "sarah@techsolutions.com",
+    phone: "+1 (555) 123-4567",
+    status: "Active",
+    lastContact: "2024-03-19",
+    tags: ["Enterprise", "High Value"]
+  },
+  {
+    id: 2,
+    name: "Michael Chang",
+    company: "Digital Dynamics",
+    email: "michael@digitaldynamics.com",
+    phone: "+1 (555) 234-5678",
+    status: "Lead",
+    lastContact: "2024-03-18",
+    tags: ["Startup", "Web Development"]
+  },
+  {
+    id: 3,
+    name: "Emma Roberts",
+    company: "Creative Studios",
+    email: "emma@creativestudios.com",
+    phone: "+1 (555) 345-6789",
+    status: "Active",
+    lastContact: "2024-03-20",
+    tags: ["Design", "Recurring"]
+  },
+  {
+    id: 4,
+    name: "James Miller",
+    company: "Growth Corp",
+    email: "james@growthcorp.com",
+    phone: "+1 (555) 456-7890",
+    status: "Inactive",
+    lastContact: "2024-03-15",
+    tags: ["SMB"]
+  }
+]
+
+const mockActivities = [
+  {
+    id: 1,
+    type: "Email",
+    contact: "Sarah Wilson",
+    description: "Sent proposal follow-up",
+    date: "2024-03-20",
+    time: "14:30"
+  },
+  {
+    id: 2,
+    type: "Call",
+    contact: "Michael Chang",
+    description: "Discovery call completed",
+    date: "2024-03-20",
+    time: "11:00"
+  },
+  {
+    id: 3,
+    type: "Meeting",
+    contact: "Emma Roberts",
+    description: "Project review meeting",
+    date: "2024-03-19",
+    time: "15:00"
+  },
+  {
+    id: 4,
+    type: "Note",
+    contact: "James Miller",
+    description: "Updated requirements doc",
+    date: "2024-03-19",
+    time: "09:15"
+  }
+]
+
+const crmStats = [
+  {
+    title: "Total Contacts",
+    value: "847",
+    change: "+23",
+    icon: Users
+  },
+  {
+    title: "Active Leads",
+    value: "245",
+    change: "+12%",
+    icon: TrendingUp
+  },
+  {
+    title: "Deals Closed",
+    value: "$128.5k",
+    change: "+18%",
+    icon: DollarSign
+  },
+  {
+    title: "Tasks Due",
+    value: "24",
+    change: "-3",
+    icon: MessageSquare
+  }
+]
+
 export default function DashboardDemo() {
   const [selectedTab, setSelectedTab] = useState("overview")
   const [selectedApp, setSelectedApp] = useState("dashboard")
@@ -128,7 +228,7 @@ export default function DashboardDemo() {
         >
           {/* App Type Selector */}
           <div className="bg-zinc-100/80 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-zinc-200 mb-8">
-            <h2 className="text-2xl font-heading font-bold text-center mb-6">Tools I like to build</h2>
+            <h2 className="text-2xl font-heading font-bold text-center mb-6">Tools I build</h2>
             <div className="grid md:grid-cols-4 gap-4">
               {appTypes.map((app) => (
                 <button
@@ -157,15 +257,8 @@ export default function DashboardDemo() {
             <div className="bg-white rounded-xl shadow-lg p-6 border border-zinc-200">
               {/* Dashboard Header */}
               <div className="flex items-center justify-between mb-8">
-                <h2 className="text-2xl font-heading font-bold">Business Dashboard</h2>
-                <div className="flex items-center gap-4">
-                  <button className="p-2 hover:bg-zinc-100 rounded-md">
-                    <Clock className="w-5 h-5" />
-                  </button>
-                  <button className="p-2 hover:bg-zinc-100 rounded-md">
-                    <AlertCircle className="w-5 h-5" />
-                  </button>
-                </div>
+                <div></div>
+                <div></div>
               </div>
 
               {/* Stats Grid */}
@@ -259,25 +352,110 @@ export default function DashboardDemo() {
             </div>
           )}
 
-          {/* E-commerce Platform Demo */}
+          {/* Shopify Apps Demo */}
           {selectedApp === "ecommerce" && (
             <div className="bg-white rounded-xl shadow-lg p-6 border border-zinc-200">
-              {/* E-commerce Header */}
+              {/* Header */}
               <div className="flex items-center justify-between mb-8">
-                <h2 className="text-2xl font-heading font-bold">E-commerce Platform</h2>
+                <h2 className="text-2xl font-heading font-bold">Custom Shopify Apps</h2>
                 <div className="flex items-center gap-4">
-                  <button className="p-2 hover:bg-zinc-100 rounded-md">
-                    <Clock className="w-5 h-5" />
-                  </button>
-                  <button className="p-2 hover:bg-zinc-100 rounded-md">
-                    <AlertCircle className="w-5 h-5" />
+                  <button className="text-sm px-3 py-1 rounded-md bg-primary text-white">
+                    Request Custom App
                   </button>
                 </div>
               </div>
 
+              {/* Example Apps */}
+              <div className="mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {mockShopifyApps.map((app) => (
+                    <div key={app.name} className="bg-white rounded-lg border border-zinc-200 overflow-hidden">
+                      <div className="p-6">
+                        <div className="flex items-start justify-between mb-4">
+                          <div>
+                            <h4 className="font-medium text-lg mb-2">{app.name}</h4>
+                            <p className="text-muted-foreground mb-4">{app.description}</p>
+                          </div>
+                          <span className="inline-block px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">
+                            {app.type}
+                          </span>
+                        </div>
+                        <div className="space-y-4">
+                          <div>
+                            <h5 className="text-sm font-medium mb-2">Key Benefits</h5>
+                            <div className="flex flex-wrap gap-2">
+                              {app.benefits.map((benefit, i) => (
+                                <span
+                                  key={i}
+                                  className="inline-block px-2 py-1 bg-zinc-100 text-zinc-800 rounded-full text-xs"
+                                >
+                                  {benefit}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                          <div>
+                            <h5 className="text-sm font-medium mb-2">Integrates With</h5>
+                            <div className="flex flex-wrap gap-2">
+                              {app.integratesWith.map((integration, i) => (
+                                <span
+                                  key={i}
+                                  className="inline-block px-2 py-1 bg-zinc-100 text-zinc-800 rounded-full text-xs"
+                                >
+                                  {integration}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Process Overview */}
+              <div>
+                <h3 className="text-lg font-medium mb-4">How It Works</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="p-6 rounded-lg border border-zinc-200">
+                    <div className="text-primary mb-4">
+                      <MessageSquare className="w-8 h-8" />
+                    </div>
+                    <h4 className="font-medium mb-2">1. Consultation</h4>
+                    <p className="text-sm text-muted-foreground">We discuss your needs and plan the perfect solution for your store</p>
+                  </div>
+                  <div className="p-6 rounded-lg border border-zinc-200">
+                    <div className="text-primary mb-4">
+                      <Store className="w-8 h-8" />
+                    </div>
+                    <h4 className="font-medium mb-2">2. Development</h4>
+                    <p className="text-sm text-muted-foreground">Custom app built specifically for your business requirements</p>
+                  </div>
+                  <div className="p-6 rounded-lg border border-zinc-200">
+                    <div className="text-primary mb-4">
+                      <TrendingUp className="w-8 h-8" />
+                    </div>
+                    <h4 className="font-medium mb-2">3. Integration</h4>
+                    <p className="text-sm text-muted-foreground">Seamless deployment and ongoing support for your custom app</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* CRM Demo */}
+          {selectedApp === "crm" && (
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-zinc-200">
+              {/* CRM Header */}
+              <div className="flex items-center justify-between mb-8">
+                <div></div>
+                <div></div>
+              </div>
+
               {/* Stats Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                {ecommerceStats.map((stat, index) => (
+                {crmStats.map((stat, index) => (
                   <Card key={index}>
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                       <CardTitle className="text-sm font-medium text-muted-foreground">
@@ -293,76 +471,101 @@ export default function DashboardDemo() {
                 ))}
               </div>
 
-              {/* Product Grid */}
-              <div className="mb-8">
-                <h3 className="text-lg font-medium mb-4">Featured Products</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {mockProducts.map((product) => (
-                    <div key={product.id} className="bg-white rounded-lg border border-zinc-200 overflow-hidden">
-                      <div className="aspect-square bg-zinc-100 flex items-center justify-center">
-                        <Store className="w-8 h-8 text-zinc-400" />
-                      </div>
-                      <div className="p-4">
-                        <h4 className="font-medium mb-1">{product.name}</h4>
-                        <div className="flex items-center justify-between">
-                          <span className="text-lg font-bold">${product.price}</span>
-                          <span className={`text-sm ${
-                            product.stock < 10 ? "text-red-500" : "text-green-500"
-                          }`}>
-                            {product.stock} in stock
-                          </span>
+              {/* Contacts and Activities Grid */}
+              <div className="grid lg:grid-cols-3 gap-8">
+                {/* Contacts List */}
+                <div className="lg:col-span-2">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-medium">Contacts</h3>
+                    <div className="flex gap-2">
+                      <button className="text-sm px-3 py-1 rounded-md bg-primary text-white">
+                        + Add Contact
+                      </button>
+                    </div>
+                  </div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="border-b">
+                          <th className="text-left py-3 px-4 font-medium">Name</th>
+                          <th className="text-left py-3 px-4 font-medium">Company</th>
+                          <th className="text-left py-3 px-4 font-medium">Status</th>
+                          <th className="text-left py-3 px-4 font-medium">Tags</th>
+                          <th className="text-left py-3 px-4 font-medium">Last Contact</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {mockContacts.map((contact) => (
+                          <tr key={contact.id} className="border-b">
+                            <td className="py-3 px-4">
+                              <div>
+                                <div className="font-medium">{contact.name}</div>
+                                <div className="text-sm text-muted-foreground">{contact.email}</div>
+                              </div>
+                            </td>
+                            <td className="py-3 px-4">{contact.company}</td>
+                            <td className="py-3 px-4">
+                              <span
+                                className={`inline-block px-2 py-1 rounded-full text-xs ${
+                                  contact.status === "Active"
+                                    ? "bg-green-100 text-green-800"
+                                    : contact.status === "Lead"
+                                    ? "bg-blue-100 text-blue-800"
+                                    : "bg-zinc-100 text-zinc-800"
+                                }`}
+                              >
+                                {contact.status}
+                              </span>
+                            </td>
+                            <td className="py-3 px-4">
+                              <div className="flex gap-1 flex-wrap">
+                                {contact.tags.map((tag, i) => (
+                                  <span
+                                    key={i}
+                                    className="inline-block px-2 py-1 bg-zinc-100 text-zinc-800 rounded-full text-xs"
+                                  >
+                                    {tag}
+                                  </span>
+                                ))}
+                              </div>
+                            </td>
+                            <td className="py-3 px-4">{contact.lastContact}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                {/* Recent Activities */}
+                <div>
+                  <h3 className="text-lg font-medium mb-4">Recent Activities</h3>
+                  <div className="space-y-4">
+                    {mockActivities.map((activity) => (
+                      <div key={activity.id} className="p-4 rounded-lg border border-zinc-200">
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <span className="inline-block px-2 py-1 bg-zinc-100 text-zinc-800 rounded-full text-xs mb-2">
+                              {activity.type}
+                            </span>
+                            <h4 className="font-medium">{activity.contact}</h4>
+                            <p className="text-sm text-muted-foreground">{activity.description}</p>
+                          </div>
+                          <div className="text-right text-sm text-muted-foreground">
+                            <div>{activity.date}</div>
+                            <div>{activity.time}</div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Recent Orders Table */}
-              <div>
-                <h3 className="text-lg font-medium mb-4">Recent Orders</h3>
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="border-b">
-                        <th className="text-left py-3 px-4 font-medium">Order ID</th>
-                        <th className="text-left py-3 px-4 font-medium">Customer</th>
-                        <th className="text-left py-3 px-4 font-medium">Amount</th>
-                        <th className="text-left py-3 px-4 font-medium">Status</th>
-                        <th className="text-left py-3 px-4 font-medium">Date</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {mockOrders.map((order) => (
-                        <tr key={order.id} className="border-b">
-                          <td className="py-3 px-4">#{order.id}</td>
-                          <td className="py-3 px-4">{order.customer}</td>
-                          <td className="py-3 px-4">${order.amount.toFixed(2)}</td>
-                          <td className="py-3 px-4">
-                            <span
-                              className={`inline-block px-2 py-1 rounded-full text-xs ${
-                                order.status === "Completed"
-                                  ? "bg-green-100 text-green-800"
-                                  : order.status === "Processing"
-                                  ? "bg-blue-100 text-blue-800"
-                                  : "bg-yellow-100 text-yellow-800"
-                              }`}
-                            >
-                              {order.status}
-                            </span>
-                          </td>
-                          <td className="py-3 px-4">{order.date}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           )}
 
           {/* Placeholders for other app types */}
-          {selectedApp !== "dashboard" && selectedApp !== "ecommerce" && (
+          {selectedApp !== "dashboard" && selectedApp !== "ecommerce" && selectedApp !== "booking" && selectedApp !== "crm" && (
             <div className="bg-white rounded-xl shadow-lg p-6 border border-zinc-200">
               <div className="h-[600px] flex items-center justify-center bg-zinc-50 rounded-lg border border-dashed">
                 <div className="text-center">
