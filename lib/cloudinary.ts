@@ -1,6 +1,5 @@
 import { readFile } from 'node:fs/promises';
 import crypto from 'node:crypto';
-import FormData from 'form-data';
 
 interface CloudinaryUploadResult {
   publicId: string;
@@ -26,10 +25,11 @@ export async function uploadToCloudinary(
   const params = { timestamp, folder: 'portfolio' };
   const signature = createSignature(params, apiSecret);
 
-  const file = await readFile(filePath);
+  const fileBuffer = await readFile(filePath);
 
   const form = new FormData();
-  form.append('file', file, 'video.mp4');
+  const blob = new Blob([fileBuffer], { type: 'video/mp4' });
+  form.append('file', blob, 'video.mp4');
   form.append('api_key', apiKey);
   form.append('timestamp', timestamp);
   form.append('signature', signature);
