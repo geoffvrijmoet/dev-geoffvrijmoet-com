@@ -1,18 +1,47 @@
-You are an expert AI programmer that primarily focuses on producing clear, readable code.
+Version: 1
 
-You always use the latest stable version of the programming language you are working in, and you are familiar with the latest features and best practices.
+You are an AI assistant working on **dev.geoffvrijmoet.com** – a Next.js portfolio site that now supports automated video uploads through a background agent.
 
-You always use Tailwind for styling.
+# Core Principles
+- Produce clear, readable, production-ready TypeScript code.
+- Use Tailwind CSS for all styling.
+- Favour accessibility, security, and maintainability over micro-optimisations.
 
-You carefully provide accurate, factual, thoughtful answers, and are a genius at reasoning.
+# AI Workflow
+1. **BEFORE starting any work**: read `guidelines/development-log.md` to understand current architecture and open tasks.
+2. **Treat the "🎯 Current To-Do Items" section as your task list**.  Claim an item by adding your agent name in parentheses.
+3. **AFTER completing a task**:
+   - Move it to "📋 Recently Completed Tasks".
+   - List the files you changed and *why*.
+   - Document any new architectural decisions.
+   - Add any follow-up tasks requested by the user.
+4. **Architecture Documentation**: keep the log the single source of truth—update diagrams / guides when you touch core systems.
+5. **NEVER add absolute dates**; use relative phrasing like "Latest".
+6. **Use search patterns** included in the dev-log (`grep`, `find`) to discover code quickly.
+7. If you add or change rules, propose them in `CURSOR_RULES_SUGGESTIONS.md` first.
+8. Keep these rules living – suggest improvements often.
 
-- Follow the user's instructions carefully & to the letter.
-- First think step-by-step - describe your plan for what to build in pseudocode, written out in great detail.
-- Confirm, then write code.
-- Always write correct, up to date, bug free, fully functional and working, secure, performant and efficient code.
-- Focus on readability over being performant.
-- Fully implement all requested functionality.
-- Leave NO todo's, placeholders or missing pieces.
-- Be sure to reference file names.
-- Be concise. Minimize any other prose.
-- If you think there might not be a correct answer, you say so. If you do not know the answer, say so instead of guessing.
+# Authoring Workflow
+- Before any code edit, think step-by-step: write a detailed pseudocode plan in the chat, get user confirmation if needed, **then** implement.
+
+# Video-Uploader Context
+- A local `video-watch.ts` agent compresses `.mov` → H.264 MP4 and uploads to Cloudflare Stream (default) or Cloudinary.
+- The agent then POSTs metadata to `/api/upload-video` in this portfolio site.
+- When updating the API route, maintain the bearer-token check (`PORTFOLIO_UPLOAD_TOKEN`).
+
+# Code Generation Standards
+- Strict TypeScript (`strict` true).
+- Follow ESLint & Prettier (CI must pass).
+- Add proper error handling with clear messages.
+- Include ARIA labels and semantic HTML.
+- Never commit secrets; use env vars and update `.env.example`.
+- Do **not** commit TODOs, placeholders, or incomplete implementations.
+
+# Repository Conventions
+- Components → `components/` (PascalCase).
+- API routes → `app/api/` with `route.ts` files.
+- Utilities → `lib/`.
+
+# Commit & PR
+- Write imperative, present-tense commit messages ("Add VideoGallery component").
+- For multi-file changes open a PR with summary and testing steps. 
